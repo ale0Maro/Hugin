@@ -25,7 +25,7 @@ edition = "2024"
 authors = ["Alessio Maroni"]
 license = "MIT or Apache-2.0"
 readme = "README"
-repository = "https://github.com/ale0Maro/Hermit"
+repository = "https://github.com/ale0Maro/Hugin"
 
 [profile.dev]
 opt-level = 0
