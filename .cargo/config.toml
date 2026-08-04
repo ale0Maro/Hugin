@@ -1,0 +1,54 @@
+[alias]
+b = "build"
+c = "check"
+cl = "clean"
+t = "test"
+r = "run"
+rr = "run --release"
+recursive_example = "rr --example recursions"
+
+[build]
+warnings = "deny"
+jobs = 1
+rustc = "rustc"
+rustc-wrapper = "sccache"
+rustdoc = "rustdoc"
+rustdocflags = ["--deny-warnings"]
+incremental = false
+
+rustflags = [
+    "-D", "warnings",
+    "-C", "panic=abort",
+    "-C", "overflow-checks=on",
+    "-C", "force-unwind-tables=no",
+]
+
+[target.x86_64-unknown-none]
+rustflags = [
+    "-C", "code-model=kernel",
+    "-C", "relocation-model=static",
+    "-C", "target-feature=-mmx,-sse,-sse2,-avx,-avx2",
+]
+
+[target.xtensa-esp32-none-elf]
+rustflags = [
+    "-C", "link-arg=-Tlinkall.x",
+]
+
+[target.'cfg(target_arch = "xtensa")']
+rustflags = [
+    "-C", "panic=abort",
+    "-C", "overflow-checks=on",
+]
+
+[profile.dev]
+panic = "abort"
+overflow-checks = true
+debug-assertions = true
+
+[profile.release]
+panic = "abort"
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
+strip = "debuginfo"
