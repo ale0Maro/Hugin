@@ -1,5 +1,5 @@
 [package]
-name = "kernel"
+name = "boot"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -9,4 +9,4 @@ repository.workspace = true
 
 [dependencies]
 log.workspace = true
-boot.workspace = true
+uefi.workspace = true

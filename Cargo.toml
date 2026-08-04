@@ -1,12 +1,23 @@
 [workspace]
 resolver = "3"
-members = ["kernel"
-
+members = [
+    "arch/x86_64",
+    "boot",
+    "kernel",
+    "mm"
 ]
 
 exclude = [
-
+    ".git-blame-ignore-revs",
+    ".gitignore",
 ]
+
+[workspace.dependencies]
+uefi = "0.39.0"
+# TODO: Once IO module is implemented remove this dipendencies
+log = "0.4.33"
+
+boot = { path = "boot" }
 
 [workspace.package]
 version = "0.1.0"
