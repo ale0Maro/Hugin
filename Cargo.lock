@@ -33,7 +33,7 @@ name = "kernel"
 version = "0.1.0"
 dependencies = [
  "boot",
- "log",
+ "uefi",
 ]
 
 [[package]]
