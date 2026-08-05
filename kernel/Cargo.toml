@@ -8,5 +8,4 @@ readme.workspace = true
 repository.workspace = true
 
 [dependencies]
-uefi.workspace = true
 boot.workspace = true

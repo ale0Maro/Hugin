@@ -14,8 +14,6 @@ exclude = [
 
 [workspace.dependencies]
 uefi = "0.39.0"
-# TODO: Once IO module is implemented remove this dipendencies
-log = "0.4.33"
 
 boot = { path = "boot" }
 

@@ -18,8 +18,11 @@ const KERNEL_PHYS_BASE: u64 = 0x200000; // 2 MB as linker
 
 #[entry]
 fn main() -> Status {
-    let init_result = uefi::helpers::init();
-    init_result.unwrap();
+    {
+        let init_result = uefi::helpers::init();
+        init_result.unwrap();
+    }
+    uefi::println!("Welgome to Huging Kernel Project's Bootloader");
 
     let memory_map =
         boot::memory_map(MemoryType::LOADER_DATA).expect("Failed to get memory map");
@@ -112,6 +115,7 @@ fn main() -> Status {
 
     boot::stall(core::time::Duration::from_secs(2));
 
+    uefi::println!("Jumping...");
     let _final_memory_map = unsafe { boot::exit_boot_services(Some(MemoryType::LOADER_DATA)) };
 
     type KernelEntry = unsafe extern "sysv64" fn(&'static hugin_boot::BootInfo) -> !;

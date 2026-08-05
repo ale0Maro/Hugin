@@ -18,7 +18,6 @@ checksum = "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
 name = "boot"
 version = "0.1.0"
 dependencies = [
- "log",
  "uefi",
 ]
 
@@ -33,7 +32,6 @@ name = "kernel"
 version = "0.1.0"
 dependencies = [
  "boot",
- "uefi",
 ]
 
 [[package]]
