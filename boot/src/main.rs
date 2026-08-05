@@ -23,7 +23,8 @@ extern crate boot as hugin_boot;
 #[allow(dead_code)]
 const KERNEL_PHYS_BASE: u64 = 0x200000; // 2 MB as linker
 
-#[cfg(target_arch = "x86_64")]#[entry]
+#[cfg(target_arch = "x86_64")]
+#[entry]
 fn main() -> Status {
     {
         let init_result = uefi::helpers::init();
