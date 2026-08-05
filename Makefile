@@ -11,25 +11,6 @@ OVMF_PATH := $(firstword $(wildcard /usr/share/edk2/ovmf/OVMF_CODE.fd /usr/share
 
 .PHONY: all fmt build-esp32 flash-esp32 monitor-esp32 run-esp32 build-x86_64 run-x86_64 clean
 
-all: build-esp32
-
-fmt:
-	@echo "Formatting workspace..."
-	@cargo fmt --all
-	@if git diff --quiet; then \
-		echo "No formatting changes to save."; \
-	else \
-		git add . ; \
-		git commit -m "style: format workspace with rustfmt" ; \
-		FMT_HASH=$$(git rev-parse HEAD) ; \
-		echo "" >> .git-blame-ignore-revs ; \
-		echo "# rustfmt run" >> .git-blame-ignore-revs ; \
-		echo "$$FMT_HASH" >> .git-blame-ignore-revs ; \
-		git add .git-blame-ignore-revs ; \
-		git commit --amend --no-edit ; \
-		echo "Formatting and ignore-revs completed in a single commit!"; \
-	fi
-
 build-esp32:
 	cargo +esp build --package kernel --target $(TARGET_XTENSA) --release
 	$(XTENSA_OBJCOPY) -O binary target/$(TARGET_XTENSA)/release/kernel target/$(TARGET_XTENSA)/release/kernel.bin
