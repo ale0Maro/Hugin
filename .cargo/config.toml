@@ -17,6 +17,11 @@ rustdoc = "rustdoc"
 rustdocflags = ["--deny-warnings"]
 incremental = false
 
+[unstable]
+build-std = [
+    "core",
+]
+
 rustflags = [
     "-D", "warnings",
     "-C", "panic=abort",
@@ -30,7 +35,7 @@ rustflags = [
     "-C", "link-arg=/SUBSYSTEM:EFI_APPLICATION",
 ]
 
-[target.x86_64-unknown-none]
+[target.x86_64-unknown-none] 
 rustflags = [
     "-C", "link-arg=-Tkernel/linker.ld",
     "-C", "code-model=kernel",
@@ -40,7 +45,8 @@ rustflags = [
 
 [target.xtensa-esp32-none-elf]
 rustflags = [
-    "-C", "link-arg=-Tlinkall.x",
+    "-C", "link-arg=-Tkernel/xtensa-esp32-linker.x",
+    "-C", "link-arg=-nostartfiles",
 ]
 
 [target.'cfg(target_arch = "xtensa")']

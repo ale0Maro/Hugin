@@ -5,18 +5,25 @@ mod panic {
     mod panic;
 }
 
+#[cfg(target_arch = "x86_64")]
 use uefi::boot::{self, AllocateType, MemoryType};
+#[cfg(target_arch = "x86_64")]
 use uefi::mem::memory_map::MemoryMap;
+#[cfg(target_arch = "x86_64")]
 use uefi::prelude::*;
+#[cfg(target_arch = "x86_64")]
 use uefi::proto::media::file::{File, FileAttribute, FileInfo, FileMode, FileType};
+#[cfg(target_arch = "x86_64")]
 use uefi::proto::media::fs::SimpleFileSystem;
+#[cfg(target_arch = "x86_64")]
 use uefi::Status;
 
 extern crate boot as hugin_boot;
 
+#[allow(dead_code)]
 const KERNEL_PHYS_BASE: u64 = 0x200000; // 2 MB as linker
 
-#[entry]
+#[cfg(target_arch = "x86_64")]#[entry]
 fn main() -> Status {
     {
         let init_result = uefi::helpers::init();
