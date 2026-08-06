@@ -1,10 +1,12 @@
 [workspace]
 resolver = "3"
 members = [
-    "arch/x86_64",
+    "arch/x86_64", 
+    "arch/xtensa",
     "boot",
     "kernel",
-    "mm"
+    "mm",
+    "esp32"
 ]
 
 exclude = [
@@ -15,7 +17,14 @@ exclude = [
 [workspace.dependencies]
 uefi = "0.39.0"
 
-boot = { path = "boot" }
+boot =      { path = "boot" }
+mm =        { path = "mm" }
+
+x86_64 =    { path = "arch/x86_64" }
+xtensa =    { path = "arch/xtensa" }
+
+esp32 =     { path = "esp32" }
+
 
 [workspace.package]
 version = "0.5.2"

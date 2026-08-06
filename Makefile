@@ -2,10 +2,7 @@ TARGET_XTENSA := xtensa-esp32-none-elf
 TARGET_X86_UEFI := x86_64-unknown-uefi
 TARGET_X86_KERNEL := x86_64-unknown-none
 
-OFFSET_ESP32 := 0x10000
-
-XTENSA_OBJCOPY_FOUND := $(firstword $(wildcard $(HOME)/.rustup/toolchains/esp/xtensa-esp-elf/*/xtensa-esp-elf/bin/xtensa-esp-elf-objcopy))
-XTENSA_OBJCOPY := $(if $(XTENSA_OBJCOPY_FOUND),$(XTENSA_OBJCOPY_FOUND),rust-objcopy)
+OFFSET_ESP32 := 0x1000
 
 OVMF_PATH := $(firstword $(wildcard /usr/share/edk2/ovmf/OVMF_CODE.fd /usr/share/OVMF/OVMF_CODE.fd))
 
@@ -13,7 +10,7 @@ OVMF_PATH := $(firstword $(wildcard /usr/share/edk2/ovmf/OVMF_CODE.fd /usr/share
 
 build-esp32:
 	cargo +esp build --package kernel --target $(TARGET_XTENSA) --release
-	$(XTENSA_OBJCOPY) -O binary target/$(TARGET_XTENSA)/release/kernel target/$(TARGET_XTENSA)/release/kernel.bin
+	esptool --chip esp32 elf2image --flash-mode dio --flash-freq 40m -o target/$(TARGET_XTENSA)/release/kernel.bin target/$(TARGET_XTENSA)/release/kernel
 
 flash-esp32: build-esp32
 	espflash write-bin $(OFFSET_ESP32) target/$(TARGET_XTENSA)/release/kernel.bin

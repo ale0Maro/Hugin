@@ -12,11 +12,15 @@ SECTIONS
 {
   .text :
   {
+    . = ALIGN(4);
+    
+    *(.literal._start .literal .literal.*)
+    
     KEEP(*(.text._start))
+    
     *(.text .text.*)
-    *(.literal .literal.*)
   } > iram0_0_seg
-
+  
   .rodata :
   {
     *(.rodata .rodata.*)
