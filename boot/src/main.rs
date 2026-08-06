@@ -5,6 +5,8 @@ mod panic {
 	mod panic;
 }
 
+// TODO: Document this file
+
 #[cfg(target_arch = "x86_64")]
 use uefi::Status;
 #[cfg(target_arch = "x86_64")]
