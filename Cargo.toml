@@ -1,12 +1,11 @@
 [workspace]
 resolver = "3"
 members = [
-    "arch/x86_64", 
-    "arch/xtensa",
     "boot",
     "kernel",
-    "mm",
-    "esp32"
+    "kernel/mm",
+    "kernel/io",
+    "arch/x86_64"
 ]
 
 exclude = [
@@ -18,18 +17,14 @@ exclude = [
 uefi = "0.39.0"
 
 boot =      { path = "boot" }
-mm =        { path = "mm" }
-
-x86_64 =    { path = "arch/x86_64" }
-xtensa =    { path = "arch/xtensa" }
-
-esp32 =     { path = "esp32" }
+mm =        { path = "kernel/mm" }
+io =        { path = "kernel/io" }
 
 
 [workspace.package]
 version = "0.1.0"
 edition = "2024"
-authors = ["Alessio Maroni"]
+authors = ["Hugin Kernel Project"]
 license = "MIT or Apache-2.0"
 readme = "README"
 repository = "https://github.com/alessioMaroni/Hugin"

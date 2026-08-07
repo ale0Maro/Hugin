@@ -16,7 +16,6 @@ rustc-wrapper = "sccache"
 rustdoc = "rustdoc"
 rustdocflags = ["--deny-warnings"]
 incremental = false
-# SPOSTATO QUI: i rustflags generali vanno in [build]
 rustflags = [
     "-D", "warnings",
     "-C", "panic=abort",

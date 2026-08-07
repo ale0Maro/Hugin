@@ -28,7 +28,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
-name = "esp32"
+name = "io"
 version = "0.1.0"
 
 [[package]]
@@ -161,8 +161,4 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 
 [[package]]
 name = "x86_64"
-version = "0.1.0"
-
-[[package]]
-name = "xtensa"
 version = "0.1.0"

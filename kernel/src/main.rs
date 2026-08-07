@@ -49,13 +49,11 @@ pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
 
             for &pin in &pins {
                 unsafe {
-                    // LED HIGH
                     core::ptr::write_volatile((0x3FF4_4000 + 0x0008) as *mut u32, 1 << pin);
                 }
                 delay(500_000);
 
                 unsafe {
-                    // LED LOW
                     core::ptr::write_volatile((0x3FF4_4000 + 0x000C) as *mut u32, 1 << pin);
                 }
                 delay(350_000);
