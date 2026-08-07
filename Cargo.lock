@@ -36,6 +36,7 @@ name = "kernel"
 version = "0.8.3"
 dependencies = [
  "boot",
+ "mm",
 ]
 
 [[package]]
@@ -47,6 +48,9 @@ checksum = "0ceec5bc11778974d1bcb055b18002eba7f4b3518b6a0081b3af5f21666da9ad"
 [[package]]
 name = "mm"
 version = "0.8.3"
+dependencies = [
+ "boot",
+]
 
 [[package]]
 name = "proc-macro2"

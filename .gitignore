@@ -3,3 +3,6 @@
 
 # Qemu
 qemu.log
+
+# Bin
+kernel.bin

@@ -9,3 +9,4 @@ repository.workspace = true
 
 [dependencies]
 boot.workspace = true
+mm.workspace = true

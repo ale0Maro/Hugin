@@ -3,6 +3,8 @@
 #![allow(unused_features)]
 #![feature(asm_experimental_arch)]
 
+use kernel::*;
+
 mod panic {
 	mod panic;
 }
@@ -11,6 +13,11 @@ mod panic {
 #[unsafe(link_section = ".text._start")]
 #[cfg(target_arch = "x86_64")]
 pub unsafe extern "sysv64" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
+    mm::bump::bump::ALLOCATOR.init(_boot_info);
+
+    let mut my_vec: Vec<u64> = Vec::new();
+    my_vec.push(100 as u64);
+
 	loop {
 		unsafe {
 			core::arch::asm!("hlt");
