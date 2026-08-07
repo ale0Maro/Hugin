@@ -16,7 +16,7 @@ checksum = "b588b76d00fde79687d7646a9b5bdf3cc0f655e0bbd080335a95d7e96f3587da"
 
 [[package]]
 name = "boot"
-version = "0.10.3"
+version = "0.1.0"
 dependencies = [
  "uefi",
 ]
@@ -29,11 +29,11 @@ checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
 name = "esp32"
-version = "0.10.3"
+version = "0.1.0"
 
 [[package]]
 name = "kernel"
-version = "0.10.3"
+version = "0.1.0"
 dependencies = [
  "boot",
  "mm",
@@ -47,7 +47,7 @@ checksum = "0ceec5bc11778974d1bcb055b18002eba7f4b3518b6a0081b3af5f21666da9ad"
 
 [[package]]
 name = "mm"
-version = "0.10.3"
+version = "0.1.0"
 dependencies = [
  "boot",
 ]
@@ -161,8 +161,8 @@ checksum = "e6e4313cd5fcd3dad5cafa179702e2b244f760991f45397d14d4ebf38247da75"
 
 [[package]]
 name = "x86_64"
-version = "0.10.3"
+version = "0.1.0"
 
 [[package]]
 name = "xtensa"
-version = "0.10.3"
+version = "0.1.0"

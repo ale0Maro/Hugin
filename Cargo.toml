@@ -27,12 +27,12 @@ esp32 =     { path = "esp32" }
 
 
 [workspace.package]
-version = "0.10.3"
+version = "0.1.0"
 edition = "2024"
 authors = ["Alessio Maroni"]
 license = "MIT or Apache-2.0"
 readme = "README"
-repository = "https://github.com/ale0Maro/Hugin"
+repository = "https://github.com/alessioMaroni/Hugin"
 
 [profile.dev]
 opt-level = 0

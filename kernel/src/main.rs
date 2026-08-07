@@ -10,22 +10,6 @@ mod panic {
 	mod panic;
 }
 
-#[unsafe(no_mangle)]
-#[unsafe(link_section = ".text._start")]
-#[cfg(target_arch = "x86_64")]
-pub unsafe extern "sysv64" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
-    mm::bump::bump::ALLOCATOR.init(_boot_info);
-
-    let mut my_vec: Vec<u64> = Vec::new();
-    my_vec.push(100 as u64);
-
-	loop {
-		unsafe {
-			core::arch::asm!("hlt");
-		}
-	}
-}
-
 // TODO: Move this logic
 #[inline(always)]
 pub fn delay(cycles: u32) {
@@ -36,34 +20,52 @@ pub fn delay(cycles: u32) {
     }
 }
 
+
 #[unsafe(no_mangle)]
 #[unsafe(link_section = ".text._start")]
-#[cfg(all(target_arch = "xtensa", target_os = "none"))]
-pub extern "C" fn _start() -> ! {
-    unsafe {
-        core::ptr::write_volatile(0x3FF4_904C as *mut u32, 2 << 12); // GPIO 4
-        core::ptr::write_volatile(0x3FF4_9050 as *mut u32, 2 << 12); // GPIO 5
-        core::ptr::write_volatile(0x3FF4_9070 as *mut u32, 2 << 12); // GPIO 18 
+pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
+    #[cfg(target_arch = "x86_64")]{
+        mm::bump::bump::ALLOCATOR.init(_boot_info);
 
-        let gpio_enable_w1ts = (0x3FF4_4000 + 0x0024) as *mut u32;
-        core::ptr::write_volatile(gpio_enable_w1ts, (1 << 4) | (1 << 5) | (1 << 18));
+        let mut my_vec: Vec<u64> = Vec::new();
+        my_vec.push(100 as u64);
     }
+    
+    #[cfg(all(target_arch = "xtensa", target_os = "none"))]{
+        unsafe {
+            core::ptr::write_volatile(0x3FF4_904C as *mut u32, 2 << 12); // GPIO 4
+            core::ptr::write_volatile(0x3FF4_9050 as *mut u32, 2 << 12); // GPIO 5
+            core::ptr::write_volatile(0x3FF4_9070 as *mut u32, 2 << 12); // GPIO 18 
 
-    loop {
-        let pins = [4, 5,18];
-
-        for &pin in &pins {
-            unsafe {
-                // LED HIGH
-                core::ptr::write_volatile((0x3FF4_4000 + 0x0008) as *mut u32, 1 << pin);
-            }
-            delay(500_000);
-
-            unsafe {
-                // LED LOW
-                core::ptr::write_volatile((0x3FF4_4000 + 0x000C) as *mut u32, 1 << pin);
-            }
-            delay(350_000);
+            let gpio_enable_w1ts = (0x3FF4_4000 + 0x0024) as *mut u32;
+            core::ptr::write_volatile(gpio_enable_w1ts, (1 << 4) | (1 << 5) | (1 << 18));
         }
     }
+
+	loop {
+        #[cfg(all(target_arch = "xtensa", target_os = "none"))]{
+
+            let pins = [4, 5,18];
+
+            for &pin in &pins {
+                unsafe {
+                    // LED HIGH
+                    core::ptr::write_volatile((0x3FF4_4000 + 0x0008) as *mut u32, 1 << pin);
+                }
+                delay(500_000);
+
+                unsafe {
+                    // LED LOW
+                    core::ptr::write_volatile((0x3FF4_4000 + 0x000C) as *mut u32, 1 << pin);
+                }
+                delay(350_000);
+            }
+        }
+
+		unsafe {
+            #[cfg(target_arch = "x86_64")]{
+			    core::arch::asm!("hlt");
+            }
+		}
+	}
 }
