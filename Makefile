@@ -18,7 +18,7 @@ flash-esp32: build-esp32
 monitor-esp32:
 	espflash monitor
 
-run-esp32: flash-esp32 monitor-esp32
+run-esp32: flash-esp32
 
 build-x86_64:
 	cargo build --package boot --target $(TARGET_X86_UEFI)

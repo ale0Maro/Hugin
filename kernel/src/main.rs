@@ -3,6 +3,7 @@
 #![allow(unused_features)]
 #![feature(asm_experimental_arch)]
 
+#[cfg(target_arch = "x86_64")]
 use kernel::*;
 
 mod panic {
@@ -49,7 +50,7 @@ pub extern "C" fn _start() -> ! {
     }
 
     loop {
-        let pins = [4, 5, 18];
+        let pins = [4, 5,18];
 
         for &pin in &pins {
             unsafe {
@@ -62,7 +63,7 @@ pub extern "C" fn _start() -> ! {
                 // LED LOW
                 core::ptr::write_volatile((0x3FF4_4000 + 0x000C) as *mut u32, 1 << pin);
             }
-            delay(500_000);
+            delay(350_000);
         }
     }
 }
