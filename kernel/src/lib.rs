@@ -3,9 +3,9 @@
 
 extern crate alloc;
 
+pub use alloc::boxed::Box;
 pub use alloc::string::String;
 pub use alloc::vec::Vec;
-pub use alloc::boxed::Box;
 
 pub use alloc::rc::Rc;
 pub use alloc::sync::Arc;

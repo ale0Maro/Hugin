@@ -7,7 +7,7 @@
 // except according to those terms.
 
 /// The ESP32-DevKitV1 has 520 KB of SRAM (Static RAM).
-pub const TOTAL_SRAM_BYTE: u32 = 532_480 ;
+pub const TOTAL_SRAM_BYTE: u32 = 532_480;
 
 /// The internal SRAM is split into 3 blocks:
 ///
@@ -27,14 +27,13 @@ pub const INTERNAL_SRAM_1_SIZE_BYTE: u32 = 131_072;
 /// SRAM2 (200 KB):
 /// Acts only as DRAM, used for BSS segments and the heap.
 ///
-/// Together with SRAM1, it constitutes the DRAM address space 
+/// Together with SRAM1, it constitutes the DRAM address space
 /// available to applications.
-/// 
+///
 /// References:
 /// - https://developer.espressif.com/blog/esp32-programmers-memory-model/
 /// - https://www.scottyob.com/post/2025-02-27-esp32-memory/
 pub const INTERNAL_SRAM_2_SIZE_BYTE: u32 = 204_800;
-
 
 /// Reference:
 /// - https://documentation.espressif.com/esp32_datasheet_en.pdf
