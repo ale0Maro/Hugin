@@ -6,8 +6,9 @@ members = [
     "kernel/mm",
     "kernel/io",
     "arch/x86_64",
-    "kernel/time"
-, "soc/esp32"]
+    "kernel/time",
+    "soc/esp32",
+    "boards/esp32-devkit-v1"]
 
 exclude = [
     ".git-blame-ignore-revs",
@@ -21,7 +22,8 @@ boot =      { path = "boot" }
 mm =        { path = "kernel/mm" }
 io =        { path = "kernel/io" }
 time =      { path = "kernel/time" }
-esp32 = { path = "soc/esp32" }
+esp32 =     { path = "soc/esp32" }
+esp32-devkit-v1 = { path = "boards/esp32-devkit-v1" }
 
 
 [workspace.package]

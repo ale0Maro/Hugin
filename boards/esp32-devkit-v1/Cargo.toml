@@ -1,5 +1,5 @@
 [package]
-name = "mm"
+name = "esp32-devkit-v1"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -8,5 +8,3 @@ readme.workspace = true
 repository.workspace = true
 
 [dependencies]
-boot.workspace = true
-esp32-devkit-v1.workspace = true

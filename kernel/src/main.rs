@@ -11,18 +11,7 @@
 #![allow(unused_features)]
 #![feature(asm_experimental_arch)]
 
-#[cfg(target_arch = "x86_64")]
 use kernel::*;
-
-#[cfg(all(target_arch = "xtensa", target_os = "none"))]
-use esp32::pins::{addr, mask};
-
-#[cfg(all(target_arch = "xtensa", target_os = "none"))]
-use mask::GpioPin;
-
-#[cfg(all(target_arch = "xtensa", target_os = "none"))]
-use addr::{set_pin_direction, set_pin_high, set_pin_low, GpioDirection};
-
 mod panic {
     mod panic;
 }
@@ -30,46 +19,15 @@ mod panic {
 #[unsafe(no_mangle)]
 #[unsafe(link_section = ".text._start")]
 pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
-    #[cfg(target_arch = "x86_64")]{
-        mm::bump::bump::ALLOCATOR.init(_boot_info);
+    #[cfg(target_arch = "x86_64")]
+    mm::bump::bump::ALLOCATOR.init(_boot_info);
+    #[cfg(all(target_arch = "xtensa", target_os = "none"))]
+    mm::bump::bump::ALLOCATOR.init();
 
-        let mut my_vec: Vec<u64> = Vec::new();
-        my_vec.push(100 as u64);
-    }
+    let mut my_vec: Vec<u32> = Vec::new();
+    my_vec.push(100 as u32);
     
-    #[cfg(all(target_arch = "xtensa", target_os = "none"))]{
-        unsafe {
-            core::ptr::write_volatile(0x3FF4_904C as *mut u32, 2 << 12); // GPIO 4
-            core::ptr::write_volatile(0x3FF4_9050 as *mut u32, 2 << 12); // GPIO 5
-            core::ptr::write_volatile(0x3FF4_9070 as *mut u32, 2 << 12); // GPIO 18 
-        }
-
-        set_pin_direction(GpioPin::Pin4, GpioDirection::Output);
-        set_pin_direction(GpioPin::Pin5, GpioDirection::Output);
-        set_pin_direction(GpioPin::Pin18, GpioDirection::Output);
-    }
-
     loop {
-        #[cfg(all(target_arch = "xtensa", target_os = "none"))]{
-            let pins = [
-                GpioPin::Pin4,
-                GpioPin::Pin5,
-                GpioPin::Pin18,
-            ];
 
-            for &pin in &pins {
-                set_pin_high(pin);
-                time::delay(500_000);
-
-                set_pin_low(pin);
-                time::delay(350_000);
-            }
-        }
-
-        unsafe {
-            #[cfg(target_arch = "x86_64")]{
-                core::arch::asm!("hlt");
-            }
-        }
     }
 }
