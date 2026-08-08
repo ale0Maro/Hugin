@@ -1,5 +1,8 @@
 # Hugin Kernel Project
 
+[![Rust Version](https://img.shields.io/badge/Rust-2021--Edition-gray?style=for-the-badge&logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![License: MIT or Apache-2.0](https://img.shields.io/badge/License-MIT%20or%20Apache%202.0-gray?style=for-the-badge)](LICENSE)
+
 ## Overview
 **Hugin Kernel Project** aims to simplify the orchestration and management of large networks of PCs and embedded chips by implementing a **Multi-Architecture Kernel** across all devices.
 
