@@ -5,7 +5,8 @@ members = [
     "kernel",
     "kernel/mm",
     "kernel/io",
-    "arch/x86_64"
+    "arch/x86_64",
+    "kernel/time"
 ]
 
 exclude = [
@@ -19,6 +20,7 @@ uefi = "0.39.0"
 boot =      { path = "boot" }
 mm =        { path = "kernel/mm" }
 io =        { path = "kernel/io" }
+time =      { path = "kernel/time" }
 
 
 [workspace.package]

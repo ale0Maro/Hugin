@@ -10,17 +10,6 @@ mod panic {
 	mod panic;
 }
 
-// TODO: Move this logic
-#[inline(always)]
-pub fn delay(cycles: u32) {
-    for _ in 0..cycles {
-        unsafe {
-            core::arch::asm!("nop", options(nomem, nostack, preserves_flags));
-        }
-    }
-}
-
-
 #[unsafe(no_mangle)]
 #[unsafe(link_section = ".text._start")]
 pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
@@ -51,12 +40,12 @@ pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
                 unsafe {
                     core::ptr::write_volatile((0x3FF4_4000 + 0x0008) as *mut u32, 1 << pin);
                 }
-                delay(500_000);
+                time::delay(500_000);
 
                 unsafe {
                     core::ptr::write_volatile((0x3FF4_4000 + 0x000C) as *mut u32, 1 << pin);
                 }
-                delay(350_000);
+                time::delay(350_000);
             }
         }
 

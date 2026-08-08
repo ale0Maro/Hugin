@@ -1,5 +1,5 @@
 [package]
-name = "kernel"
+name = "time"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -8,6 +8,3 @@ readme.workspace = true
 repository.workspace = true
 
 [dependencies]
-boot.workspace = true
-mm.workspace = true
-time.workspace = true
