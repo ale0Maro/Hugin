@@ -37,12 +37,6 @@ pub extern "C" fn _start(_boot_info: &'static boot::BootInfo) -> ! {
 
 	#[cfg(all(target_arch = "xtensa", target_os = "none"))]
 	{
-		unsafe {
-			core::ptr::write_volatile(0x3FF4_904C as *mut u32, 2 << 12); // GPIO 4
-			core::ptr::write_volatile(0x3FF4_9050 as *mut u32, 2 << 12); // GPIO 5
-			core::ptr::write_volatile(0x3FF4_9070 as *mut u32, 2 << 12); // GPIO 18 
-		}
-
 		set_pin_direction(GpioPin::Pin4, GpioDirection::Output);
 		set_pin_direction(GpioPin::Pin5, GpioDirection::Output);
 		set_pin_direction(GpioPin::Pin18, GpioDirection::Output);
