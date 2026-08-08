@@ -21,6 +21,7 @@ boot =      { path = "boot" }
 mm =        { path = "kernel/mm" }
 io =        { path = "kernel/io" }
 time =      { path = "kernel/time" }
+esp32 = { path = "soc/esp32" }
 
 
 [workspace.package]

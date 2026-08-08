@@ -11,3 +11,4 @@ repository.workspace = true
 boot.workspace = true
 mm.workspace = true
 time.workspace = true
+esp32.workspace = true

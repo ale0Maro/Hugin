@@ -1,4 +1,6 @@
 #![no_std]
+#![allow(unused_features)]
+#![feature(asm_experimental_arch)]
 
 // TODO: Document this function
 #[inline(always)]

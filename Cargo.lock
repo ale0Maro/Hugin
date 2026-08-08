@@ -40,6 +40,7 @@ name = "kernel"
 version = "0.1.0"
 dependencies = [
  "boot",
+ "esp32",
  "mm",
  "time",
 ]
