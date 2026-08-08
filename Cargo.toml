@@ -7,7 +7,7 @@ members = [
     "kernel/io",
     "arch/x86_64",
     "kernel/time"
-]
+, "soc/esp32"]
 
 exclude = [
     ".git-blame-ignore-revs",
